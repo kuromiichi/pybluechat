@@ -2,7 +2,7 @@
 
 ### Current state
 
-It doesn't work yet lol (it connects two devices but that's it).
+A connection can be established and the chat is mostly working fine. It will probably still be buggy, and upon terminating the connection weird things will happen.
 
 ## Python-based chat using RFCOMM protocol
 
@@ -15,6 +15,8 @@ Upon running PyBlueChat, the user will be prompted to enter the mode of the appl
 In client mode, PyBlueChat will ask for an address (or remember the last address used), and a port to create the connection.
 
 In server mode, the connection will be created automatically and the address and port will be displayed to the user.
+
+While in the chat, typing `exit()` will terminate the connection and close the application.
 
 ## I'm running out of things to write
 
