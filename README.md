@@ -2,7 +2,7 @@
 
 ### Current state
 
-It doesn't work yet lol (it connects two devices but that's it).
+A connection can be established and the chat is mostly working fine. It will probably still be buggy, and upon terminating the connection weird things will happen.
 
 ## Python-based chat using RFCOMM protocol
 
