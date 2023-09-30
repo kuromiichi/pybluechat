@@ -7,7 +7,7 @@ import server
 
 def main():
     create_data_directory()
-    os.system("cls" if os.name == 'nt' else "clear")
+    os.system("cls" if os.name == "nt" else "clear")
     print("Welcome to PyBlueChat!")
 
     # Mode selection (server/client)
@@ -19,8 +19,6 @@ def main():
             mode = sys.argv[1]
     else:
         mode = select_mode()
-
-    print("Mode selected: " + mode)
 
     if mode == "server":
         server.main()

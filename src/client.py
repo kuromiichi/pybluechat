@@ -1,5 +1,11 @@
+import sys
+
 import bluetooth
 import os
+
+from chat import Chat
+
+last_address_file = "../data/last_address.txt"
 
 
 def main():
@@ -24,15 +30,33 @@ def main():
 
     # Create socket and connect to server
     socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-    socket.connect((address, port))
 
-    # funky wunky stuff goes here
+    try:
+        socket.connect((address, port))
+    except OSError:
+        print("Failed to connect to server, exiting application")
+        socket.close()
+        sys.exit(1)
 
+    print("Connected to server at address", address)
+    print("Press enter to join the chat")
+
+    # Create chat with remote device
+    chat = Chat(address, socket)
+    try:
+        chat.run()
+    except OSError:
+        print("Connection ended")
+
+    # Close the socket
+    print("Exiting the application")
     socket.close()
 
 
 def get_last_address():
-    with open("../data/last_address.txt", "r") as f:
+    if not os.path.exists(last_address_file):
+        return
+    with open(last_address_file, "r") as f:
         return f.read().strip()
 
 
@@ -47,7 +71,7 @@ def get_new_address():
 
 
 def save_new_address(address):
-    with open("../data/last_address.txt", "w") as f:
+    with open(last_address_file, "w") as f:
         f.write(address)
 
 
